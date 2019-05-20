@@ -19,7 +19,7 @@ router.post('/', async(req, res) => {
         const hashedPwd = await crypto.pbkdf2((req.body.password).toString(), salt_final, 1000, 32, 'SHA512');
         const hashedPwd_final = hashedPwd.toString('base64');
         const insertUserQuery = 'INSERT INTO user (id, name, password, salt) VALUES (?, ?, ?, ?)';
-        const insertUserResult = await db.queryParam_Parse(insertUserQuery, [req.body.id, req.body.name, hashedPwd_final, salt_final]);//이것의 결과?????0(성공),1(실패)로 결과가 나옴?
+        const insertUserResult = await db.queryParam_Parse(insertUserQuery, [req.body.id, req.body.name, hashedPwd_final, salt_final]);
         if (insertUserResult.length == 0) {//result가 비어있지 않으면
             res.status(200).send(util.successFalse(statusCode.DB_ERROR, resMessage.USER_INSERT_FAIL));//db 저장 실패(회원가입 실패)
         } else { //쿼리문이 성공했을 때

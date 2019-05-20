@@ -33,4 +33,7 @@ module.exports = {//서버들끼리의 원활한 소통을 위해서 응답메�
     USER_SELECT_FAIL:"게시물 불러오기 실패",
     USER_SELECT_SUCCESS:"게시물 불러오기 성공",
     BOARD_DELETE_FAIL:"게시물 삭제 실패",
+    LOGIN_FAIL_ID:"로그인 실패(id 불일치)",
+    LOGIN_FAIL_PASSWORD:"로그인 실패(password 불일치)",
+
 };

@@ -17,6 +17,11 @@ router.get('/', async(req, res) => {
     if (getAllBoardResult == 0) { //쿼리문이 실패했을 때
         res.status(200).send(util.successFalse(statusCode.DB_ERROR, resMessage.USER_SELECT_FAIL));
     } else { //쿼리문이 성공했을 때
+        //boardPw, salt값 지우고 보여주기
+        for(i=0;i<getAllBoardResult.length;i++){
+            delete getAllBoardResult[0]['boardPw'];
+            delete getAllBoardResult[0]['salt'];
+        }
         res.status(200).send(util.successTrue(statusCode.OK, resMessage.USER_SELECT_SUCCESS, getAllBoardResult));
     }
 });
@@ -31,6 +36,8 @@ router.get('/:idx', async(req, res) => {
     if (getBoardResult == 0) { //쿼리문이 실패했을 때
         res.status(200).send(util.successFalse(statusCode.DB_ERROR, resMessage.USER_SELECT_FAIL));
     } else { //쿼리문이 성공했을 때
+        delete getBoardResult[0]['boardPw'];
+        delete getBoardResult[0]['salt'];
         res.status(200).send(util.successTrue(statusCode.OK, resMessage.USER_SELECT_SUCCESS, getBoardResult));
     }
 });
